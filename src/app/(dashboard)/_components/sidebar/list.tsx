@@ -1,5 +1,7 @@
 "use client"
 import { OrganizationList, useOrganizationList } from "@clerk/nextjs"
+import Item from "./items";
+import Hint from "@/components/hint";
 export const List = ()=>{
     const {userMemberships} = useOrganizationList({
       userMemberships : {
@@ -15,9 +17,15 @@ export const List = ()=>{
     return (
         <ul>
            {userMemberships.data?.map((mem)=>(
-            <p key = {mem.organization.id}>
-                {mem.organization.name}
-            </p>
+
+<Item
+            key = {mem.organization.id}
+            id = {mem.organization.id}
+            name = {mem.organization.name}
+            imageUrl = {mem.organization.imageUrl}
+            />
+
+           
            ))}
         </ul>
     )
