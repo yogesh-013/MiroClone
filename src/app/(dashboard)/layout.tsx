@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <main className="w-full h-screen">
       <Sidebar />
-      <div className="pl-[90px] h-full">
+      <div className="pl-[100px] h-full">
         <div className="flex gap-x-3 h-full ">
           <OrgSide />
           <div className="h-full flex-1">

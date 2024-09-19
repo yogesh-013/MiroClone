@@ -38,7 +38,7 @@ sideOffset={18}>
    onClick={onClick} 
    width = {300}
    height = {300}
-   className={cn(" m-2 rounded-md cursor-pointer opacity-75 hover:opacity-100 transition" , 
+   className={cn(" m-1 p-2 rounded-md cursor-pointer opacity-75 hover:opacity-100 transition" , 
     isActive && "opacity-100"
    )}/>
 </Hint>)
