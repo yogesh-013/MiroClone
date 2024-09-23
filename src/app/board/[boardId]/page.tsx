@@ -1,8 +1,20 @@
-const BoardPage = ()=>{
+"use client"
+import { Room } from "@/components/room"
+import { Canvas } from "./_components/canvas"
+import { Loading } from "./_components/loading"
+interface BoardPageProps{
+    params : {
+        boardId : string
+    }
+}
+const BoardPage = ({
+    params
+} : BoardPageProps)=>{
+   
     return (
-        <div>
-            Board ID Page
-        </div>
+           <Room roomId={params.boardId} fallback = {<Loading/>}>
+        <Canvas boardId = {params.boardId}/>
+        </Room>
     )
 }
 export default BoardPage
