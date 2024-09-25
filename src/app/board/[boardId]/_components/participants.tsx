@@ -12,6 +12,9 @@ export const Participants = () => {
   const currentUser = useSelf();
   const hasMoreUsers = otherUsers.length > MAX_SHOWN_OTHER_USERS;
 
+console.log("<<<Other Users >>>> " , otherUsers);
+console.log("<<<Current Users >>>> " , currentUser);
+
 
   return (
     <div className="absolute h-12 top-2 right-2 bg-white rounded-md p-3 flex items-center shadow-md">
