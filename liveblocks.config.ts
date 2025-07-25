@@ -1,7 +1,13 @@
-import { createClient } from "@liveblocks/client";
+import{createClient, 
+       LiveList, 
+       LiveMap, 
+       LiveObject
+ } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
-
+import type { Layer , Color } from "./types/canvas";
 const client = createClient({
+  throttle : 16 , 
+  
    authEndpoint: "/api/liveblocks-auth"
 
 });
@@ -12,19 +18,19 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  // cursor: { x: number, y: number } | null,
-  // ...
+  cursor: { x: number, y: number } | null, 
+  selection: string[];
+   pencilDraft: [x: number, y: number, pressure: number][] | null;
+  pencilColor: Color | null;
+// ...
 };
 type UserMeta = {
-  id: string;
-
-      // Example, use any JSON-compatible data in your metadata
-      info: {
-        name: string;
-        avatar: string;
-        colors: string[];
-      }
-}
+  id?: string;
+  info?: {
+    name?: string;
+    picture?: string;
+  };
+};
 
 // Optionally, Storage represents the shared document that persists in the
 // Room, even after all Users leave. Fields under Storage typically are
@@ -33,6 +39,8 @@ type UserMeta = {
 type Storage = {
   // author: LiveObject<{ firstName: string, lastName: string }>,
   // ...
+  layers: LiveMap<string, LiveObject<Layer>>;
+  layerIds: LiveList<string>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each User, as
@@ -62,7 +70,6 @@ export const {
     useEventListener,
     useErrorListener,
     useStorage,
-  
     useHistory,
     useUndo,
     useRedo,
